@@ -1,6 +1,6 @@
 package com.jonasdevrient.citypinboard.models
 
-import java.util.Date
+import java.util.*
 
 class Post (
         var title: String,
