@@ -1,19 +1,38 @@
 package com.jonasdevrient.citypinboard
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationHost {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnLaunchApp.setOnClickListener {
-            val intent = Intent(this, PinboardsActivity::class.java)
-            startActivity(intent)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, LoginFragment())
+                    .commit()
         }
     }
+
+    /**
+     * Trigger a navigation to the specified fragment, optionally adding a transaction to the back
+     * stack to make this navigation reversible.
+     */
+    override fun navigateTo(fragment: Fragment, addToBackstack: Boolean) {
+        val transaction = supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container, fragment)
+
+        if (addToBackstack) {
+            transaction.addToBackStack(null)
+        }
+
+        transaction.commit()
+    }
+
 }

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">City Pinboard</string>
+
+    <!-- Strings related to LoginFragment -->
+    <string name="next_button">Login</string>
+    <string name="hint_username">Gebruikersnaam</string>
+    <string name="hint_password">Wachtwoord</string>
+    <string name="error_password">Wachtwoord moet minstens 8 letters bevatten</string>
+
 </resources>
