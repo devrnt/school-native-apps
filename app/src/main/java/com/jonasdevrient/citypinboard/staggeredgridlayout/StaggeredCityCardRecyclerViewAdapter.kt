@@ -1,15 +1,12 @@
 package com.jonasdevrient.citypinboard.staggeredgridlayout
 
 
-import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.jonasdevrient.citypinboard.R
-
 import com.jonasdevrient.citypinboard.network.CityEntry
+import com.squareup.picasso.Picasso
 
 /**
  * Adapter used to show an asymmetric grid of products, with 2 items in the first column, and 1
@@ -37,10 +34,9 @@ class StaggeredCityCardRecyclerViewAdapter(private val citiesList: List<CityEntr
             val city = citiesList[position]
             holder.cityTitle.text = city.title
             holder.cityPrice.text = city.price
-            holder.cityImage.setImageResource(R.drawable.ic_icon)
+            Picasso.get().load(city.url).into(holder.cityImage)
         }
     }
-
 
     override fun getItemCount(): Int {
         return citiesList?.size ?: 0
