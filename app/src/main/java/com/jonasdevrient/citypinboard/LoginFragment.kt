@@ -21,7 +21,7 @@ class LoginFragment : Fragment() {
                 password_text_input.error = getString(R.string.error_password)
             } else {
                 password_text_input.error = null // Clear the error
-                (activity as NavigationHost).navigateTo(CityListFragment(), false) // navigate to next fragment
+                (activity as NavigationHost).navigateTo(PinboardListFragment(), false) // navigate to next fragment
             }
         }
 
