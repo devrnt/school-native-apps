@@ -23,7 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PinboardDetailsActivity"></activity>
+        <activity
+            android:name=".PinboardDetailsActivity"
+            android:label="@string/pinboard_details_title"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

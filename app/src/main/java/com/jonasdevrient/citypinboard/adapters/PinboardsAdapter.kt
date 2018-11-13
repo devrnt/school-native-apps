@@ -1,11 +1,13 @@
 package com.jonasdevrient.citypinboard.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.gson.Gson
 import com.jonasdevrient.citypinboard.PinboardDetailsActivity
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Pinboard
@@ -34,9 +36,13 @@ class PinboardsAdapter(val context: Context?, val pinboards: List<Pinboard>) : R
         init {
             itemView.setOnClickListener {
                 Toast.makeText(context, currentPinboard!!.city + "Clicked", Toast.LENGTH_SHORT).show()
-                // open details page
-                val intent = PinboardDetailsActivity(currentPinboard!!)
-                intent
+
+                val gson = Gson()
+                val jsonPinboard = gson.toJson(currentPinboard)
+
+                val intent = Intent(context, PinboardDetailsActivity::class.java)
+                intent.putExtra(context!!.resources.getString(R.string.key_pinboard), jsonPinboard)
+                context!!.startActivity(intent)
             }
         }
 
