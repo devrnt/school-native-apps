@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".city.PinboardDetailsFragment">
+    android:padding="8dp">
 
 
     <android.support.design.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/mtrl_card_spacing"
-        app:cardUseCompatPadding="true"
         android:layout_marginTop="@dimen/mtrl_card_spacing"
         android:layout_marginRight="@dimen/mtrl_card_spacing"
-        android:minHeight="100dp">
+        android:minHeight="100dp"
+        app:cardUseCompatPadding="true">
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"

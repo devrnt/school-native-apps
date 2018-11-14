@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--
     <color name="colorPrimary">#00d1b2</color>
     <color name="colorPrimaryDark">#009b84</color>
     <color name="colorAccent">#0053d1</color>
@@ -8,5 +9,15 @@
     <color name="textColorPrimary">#442C2E</color>
     <color name="toolbarIconColor">@color/textColorPrimary</color>
     <color name="colorControlActivated">#FBB8AC</color>
+    -->
+
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#00e676</color>
+    <color name="colorAccentDark">#00b248</color>
+    <color name="loginPageBackgroundColor">#018786</color>
+    <color name="cityListBackgroundColor">#f4f4f4</color>
+    <color name="colorError">#B00020</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
 
 </resources>
