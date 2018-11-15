@@ -2,10 +2,16 @@
     <string name="app_name">City Pinboard</string>
 
     <!-- Strings related to LoginFragment -->
+    <string name="register_button">Registreer</string>
     <string name="next_button">Login</string>
     <string name="hint_username">Gebruikersnaam</string>
     <string name="hint_password">Wachtwoord</string>
+    <string name="hint_confirm_password">Bevestig wachtwoord</string>
     <string name="error_password">Wachtwoord moet minstens 8 letters bevatten</string>
+    <string name="error_confirm_password">Wachtwoord moet overeen komen</string>
+    <string name="error_username">Gebruikersnaam moet minstens 4 letters bevatten</string>
+    <string name="error_useralreadyexists">Gebruikersnaam is reeds in gebruik</string>
+
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -28,5 +34,9 @@
 
     <!-- Strings related to Page titles -->
     <string name="pinboard_details_title">Posts</string>
+
+
+    <!-- Strings related to sharedPreferences keys -->
+    <string name="sp_token_key">com.jonasdevrient.citypinboard.token</string>
 
 </resources>
