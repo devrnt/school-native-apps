@@ -11,6 +11,8 @@
     <string name="error_confirm_password">Wachtwoord moet overeen komen</string>
     <string name="error_username">Gebruikersnaam moet minstens 4 letters bevatten</string>
     <string name="error_useralreadyexists">Gebruikersnaam is reeds in gebruik</string>
+    <string name="error_wrong_user_or_password">Gebruikersnaam is reeds in gebruik</string>
+    <string name="something_went_wrong">Oeps, er ging iets fout</string>
 
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->

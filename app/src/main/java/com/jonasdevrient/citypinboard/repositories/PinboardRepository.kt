@@ -14,7 +14,7 @@ interface PinboardRepository {
 
 object PinboardAPI {
     // online url
-    private val API_BASE_URL = "http://citypinboard.herokuapp.com/api/"
+    private val API_BASE_URL = "https://citypinboard.herokuapp.com/api/"
 
     // local url
     // private val API_BASE_URL = "http://192.168.0.229:3000/api/"

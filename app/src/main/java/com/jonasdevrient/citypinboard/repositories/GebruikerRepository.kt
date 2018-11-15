@@ -12,7 +12,7 @@ import retrofit2.http.POST
 
 interface GebruikerRepository {
     @POST("users/login")
-    fun login(@Body gebruiker: Gebruiker): Observable<Boolean>
+    fun login(@Body gebruiker: Gebruiker): Observable<RegistreerResponse>
 
     @POST("users/register")
     fun registreer(@Body gebruiker: Gebruiker): Observable<RegistreerResponse>
