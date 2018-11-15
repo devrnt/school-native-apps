@@ -41,4 +41,6 @@
     <!-- Strings related to sharedPreferences keys -->
     <string name="sp_token_key">com.jonasdevrient.citypinboard.token</string>
 
+    <string name="back_button">Terug</string>
+
 </resources>

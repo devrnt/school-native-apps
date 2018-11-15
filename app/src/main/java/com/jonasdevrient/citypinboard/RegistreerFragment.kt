@@ -27,6 +27,10 @@ class RegistreerFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.registreer_fragment, container, false)
 
+        view.back_button.setOnClickListener {
+            (activity as NavigationHost).navigateTo(LoginFragment(), false) // navigate to next fragment
+        }
+
 
         // Verwijder de error als er meer dan 4 karakters getypt worden
         view.username_edit_text_reg.setOnKeyListener { _, _, _ ->
