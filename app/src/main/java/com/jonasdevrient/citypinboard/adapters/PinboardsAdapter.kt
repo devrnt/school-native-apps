@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.gson.Gson
-import com.jonasdevrient.citypinboard.PinboardDetailsActivity
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Pinboard
+import com.jonasdevrient.citypinboard.pinboards.PinboardDetailsActivity
 import kotlinx.android.synthetic.main.pinboard_item.view.*
 
 class PinboardsAdapter(val context: Context?, val pinboards: List<Pinboard>) : RecyclerView.Adapter<PinboardsAdapter.MyViewHolder>() {
@@ -42,7 +42,7 @@ class PinboardsAdapter(val context: Context?, val pinboards: List<Pinboard>) : R
 
                 val intent = Intent(context, PinboardDetailsActivity::class.java)
                 intent.putExtra(context!!.resources.getString(R.string.key_pinboard), jsonPinboard)
-                context!!.startActivity(intent)
+                context.startActivity(intent)
             }
         }
 

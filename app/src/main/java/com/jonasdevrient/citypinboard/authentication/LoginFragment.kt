@@ -11,9 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.jonasdevrient.citypinboard.NavigationHost
-import com.jonasdevrient.citypinboard.PinboardListFragment
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Gebruiker
+import com.jonasdevrient.citypinboard.pinboards.PinboardListFragment
 import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.RegistreerResponse
 import io.reactivex.android.schedulers.AndroidSchedulers

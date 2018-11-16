@@ -10,9 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jonasdevrient.citypinboard.NavigationHost
-import com.jonasdevrient.citypinboard.PinboardListFragment
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Gebruiker
+import com.jonasdevrient.citypinboard.pinboards.PinboardListFragment
 import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse
 import com.jonasdevrient.citypinboard.responses.RegistreerResponse

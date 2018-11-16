@@ -1,18 +1,15 @@
-package com.jonasdevrient.citypinboard
+package com.jonasdevrient.citypinboard.pinboards
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.google.gson.Gson
-import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
+import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.adapters.PostsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
-import com.jonasdevrient.citypinboard.repositories.PinboardAPI
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
-class PinboardDetailsActivity() : AppCompatActivity() {
+class PinboardDetailsActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:clipChildren="false"
     android:clipToPadding="false"
-    tools:context=".PinboardListFragment">
+    tools:context=".pinboards.PinboardListFragment">
 
 
     <android.support.v4.widget.NestedScrollView

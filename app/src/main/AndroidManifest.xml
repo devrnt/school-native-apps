@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PinboardDetailsActivity"
+            android:name=".pinboards.PinboardDetailsActivity"
             android:label="@string/pinboard_details_title"
             android:parentActivityName=".MainActivity"></activity>
     </application>

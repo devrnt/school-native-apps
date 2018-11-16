@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/cityListBackgroundColor"
     android:layout_height="match_parent"
-    tools:context=".PinboardDetailsActivity">
+    tools:context=".pinboards.PinboardDetailsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_posts"
