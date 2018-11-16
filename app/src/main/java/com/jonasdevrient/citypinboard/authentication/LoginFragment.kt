@@ -1,4 +1,4 @@
-package com.jonasdevrient.citypinboard
+package com.jonasdevrient.citypinboard.authentication
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -10,6 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.jonasdevrient.citypinboard.NavigationHost
+import com.jonasdevrient.citypinboard.PinboardListFragment
+import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Gebruiker
 import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.RegistreerResponse
