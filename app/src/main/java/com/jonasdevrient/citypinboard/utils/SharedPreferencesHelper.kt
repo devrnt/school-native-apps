@@ -1,5 +1,9 @@
 import android.content.SharedPreferences
 
+/**
+ * Kotlin extension class for SharedPreferences
+ * to easily get and put a value in SharedPreferences
+ */
 inline fun <reified T> SharedPreferences.get(key: String, defaultValue: T): T {
     when (T::class) {
         Boolean::class -> return this.getBoolean(key, defaultValue as Boolean) as T
@@ -33,5 +37,5 @@ inline fun <reified T> SharedPreferences.put(key: String, value: T) {
         }
     }
 
-    editor.commit()
+    editor.apply()
 }
