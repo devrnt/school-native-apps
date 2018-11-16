@@ -2,13 +2,14 @@ package com.jonasdevrient.citypinboard.models
 
 import java.util.*
 
-class Post (
-        var title: String,
-        var body: String,
-        var dateCreated: Date? = null,
+class Post(
+        val title: String,
+        val body: String,
+        val dateCreated: Date? = null,
         var likes: Int = 0,
-        var creator: String? = null
+        val creator: String? = null
 ) {
+
     fun addLike() {
         likes++
     }
