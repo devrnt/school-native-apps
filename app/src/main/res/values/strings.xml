@@ -26,4 +26,7 @@
 
     <string name="back_button">Terug</string>
 
+
+    <!-- Strings related to searchbar keys -->
+    <string name="hint_search">Zoek steden...</string>
 </resources>

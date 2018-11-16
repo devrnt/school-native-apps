@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.SearchView
+import android.view.*
+import android.widget.EditText
 import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.repositories.PinboardAPI
@@ -20,6 +20,13 @@ class PinboardListFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var pinboards: List<Pinboard>
+    lateinit var displayPinboards: MutableList<Pinboard>
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment with the CityList theme
@@ -33,6 +40,45 @@ class PinboardListFragment : Fragment() {
 
 
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_menu, menu)
+        val searchItem = menu.findItem(R.id.search_menu)
+        if (searchItem != null) {
+            val searchView = searchItem.actionView as SearchView
+            val editText = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
+            editText.hint = getString(R.string.hint_search)
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText!!.isNotEmpty()) {
+                        displayPinboards.clear()
+
+                        val search = newText.toLowerCase()
+
+                        pinboards.forEach {
+                            if (it.city.toLowerCase().contains(search)) {
+                                displayPinboards.add(it)
+                            }
+                        }
+                        viewAdapter.notifyDataSetChanged()
+                    } else {
+                        displayPinboards.clear()
+                        displayPinboards.addAll(pinboards)
+                        viewAdapter.notifyDataSetChanged()
+                    }
+                    return true
+                }
+
+            })
+        }
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -51,8 +97,9 @@ class PinboardListFragment : Fragment() {
 
     private fun handleResponse(pinboards: List<Pinboard>) {
 
-        print(pinboards)
-        viewAdapter = PinboardsAdapter(context, pinboards)
+        this.pinboards = pinboards
+        displayPinboards = pinboards.toMutableList()
+        viewAdapter = PinboardsAdapter(context, displayPinboards)
 
         recyclerView.apply {
             setHasFixedSize(true)

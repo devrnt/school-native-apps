@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity(), NavigationHost {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), NavigationHost {
                     .commit()
         }
     }
+
 
     /**
      * Trigger a navigation to the specified fragment, optionally adding a transaction to the back
