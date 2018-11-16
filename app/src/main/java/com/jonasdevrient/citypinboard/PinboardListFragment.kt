@@ -2,6 +2,7 @@ package com.jonasdevrient.citypinboard
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -32,6 +33,11 @@ class PinboardListFragment : Fragment() {
 
 
         return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar!!.show()
     }
 
     private fun loadPinboards() {

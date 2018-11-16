@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
@@ -81,6 +82,11 @@ class RegistreerFragment : Fragment() {
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)*/
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar!!.hide()
     }
 
     /*

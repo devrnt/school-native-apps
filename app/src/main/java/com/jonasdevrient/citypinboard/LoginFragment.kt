@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,9 @@ class LoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.login_fragment, container, false)
+
+
+
 
         view.registreer_button.setOnClickListener {
             val fragmentManager = fragmentManager
@@ -69,6 +73,10 @@ class LoginFragment : Fragment() {
         return view
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar!!.hide()
+    }
 
     private fun isUsernameValid(text: Editable?): Boolean {
         return text != null && text.length >= 4
