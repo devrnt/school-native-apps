@@ -10,7 +10,9 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Pinboard
+import com.jonasdevrient.citypinboard.models.StadFoto
 import com.jonasdevrient.citypinboard.pinboards.PinboardDetailsActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.pinboard_item.view.*
 
 class PinboardsAdapter(val context: Context?, val pinboards: List<Pinboard>) : RecyclerView.Adapter<PinboardsAdapter.MyViewHolder>() {
@@ -50,6 +52,8 @@ class PinboardsAdapter(val context: Context?, val pinboards: List<Pinboard>) : R
         fun setData(pinboard: Pinboard?, position: Int) {
             itemView.city_text.text = pinboard!!.city
             itemView.amount_of_posts.text = pinboard.amountOfPosts.toString()
+            Picasso.get().load(StadFoto.image(pinboard.city.toLowerCase().trim())).fit().centerCrop().placeholder(R.drawable.ic_favorite_24dp).error(R.drawable.ic_icon).into(itemView.city_image)
+
             this.currentPinboard = pinboard
             this.currentPosition = position
         }
