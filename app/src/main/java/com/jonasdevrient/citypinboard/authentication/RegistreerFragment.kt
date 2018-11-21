@@ -130,6 +130,8 @@ class RegistreerFragment : Fragment() {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         sharedPreferences.put(getString(R.string.sp_token_key), token)
+        sharedPreferences.put(getString(R.string.sp_token_username), gebruiker.username)
+
 
         (activity as NavigationHost).navigateTo(PinboardListFragment(), false) // navigate to next fragment
 

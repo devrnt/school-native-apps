@@ -27,13 +27,13 @@ import retrofit2.HttpException
 class LoginFragment : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
 
+    // used to persist in the sharedPref
+    private lateinit var username: String
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.login_fragment, container, false)
-
-
-
 
         view.registreer_button.setOnClickListener {
             val fragmentManager = fragmentManager
@@ -50,6 +50,8 @@ class LoginFragment : Fragment() {
             if (!isUsernameValid(username_edit_text.text)) username_text_input.error = getString(R.string.error_username) else username_text_input.error = null
 
             if (username_text_input.error == null && password_text_input.error == null) {
+
+                username = username_edit_text.text.toString()
 
                 val call = GebruikerAPI.repository.login(Gebruiker(username_edit_text.text.toString(), password_edit_text.text.toString()))
                 call.observeOn(AndroidSchedulers.mainThread())
@@ -95,6 +97,7 @@ class LoginFragment : Fragment() {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         sharedPreferences.put(getString(R.string.sp_token_key), token)
+        sharedPreferences.put(getString(R.string.sp_token_username), username)
 
         (activity as NavigationHost).navigateTo(PinboardListFragment(), false) // navigate to next fragment
     }

@@ -8,12 +8,14 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import android.widget.EditText
+import android.widget.ProgressBar
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.repositories.PinboardAPI
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.pinboard_list_fragment.view.*
 
 
 class PinboardListFragment : Fragment() {
@@ -22,6 +24,7 @@ class PinboardListFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var pinboards: List<Pinboard>
     lateinit var displayPinboards: MutableList<Pinboard>
+    private lateinit var spinner: ProgressBar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,7 @@ class PinboardListFragment : Fragment() {
         // Inflate the layout for this fragment with the CityList theme
         val view = inflater.inflate(R.layout.pinboard_list_fragment, container, false)
 
+        spinner = view.spinner_pinboards
 
         recyclerView = view.findViewById(R.id.recycler_view)
         viewManager = LinearLayoutManager(activity)
@@ -100,6 +104,9 @@ class PinboardListFragment : Fragment() {
 
         this.pinboards = pinboards
         displayPinboards = pinboards.toMutableList()
+
+        spinner.visibility = View.GONE
+
         viewAdapter = PinboardsAdapter(context, displayPinboards)
 
         recyclerView.apply {

@@ -8,16 +8,18 @@ import com.google.gson.Gson
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.adapters.PostsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
+import com.jonasdevrient.citypinboard.pinboards.posts.AddPostFragment
 
 class PinboardDetailsActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var pinboard: Pinboard
+    lateinit var pinboard: Pinboard
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_pinboard_details)
 
         val gson = Gson()
@@ -34,6 +36,12 @@ class PinboardDetailsActivity : AppCompatActivity() {
 
             adapter = viewAdapter
         }
+
+        supportFragmentManager
+                .beginTransaction()
+                .add(R.id.container_add_post, AddPostFragment())
+                .commit()
+
     }
 
 }
