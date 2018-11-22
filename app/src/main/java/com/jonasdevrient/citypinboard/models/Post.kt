@@ -8,13 +8,4 @@ class Post(
         val dateCreated: Date? = null,
         var likes: Int = 0,
         val creator: String? = null
-) {
-
-    fun addLike() {
-        likes++
-    }
-
-    fun removeLike() {
-        likes--
-    }
-}
+)

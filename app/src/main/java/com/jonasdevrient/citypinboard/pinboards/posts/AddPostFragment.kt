@@ -14,6 +14,7 @@ import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.models.Post
 import com.jonasdevrient.citypinboard.pinboards.PinboardDetailsActivity
 import com.jonasdevrient.citypinboard.repositories.PinboardAPI
+import com.jonasdevrient.citypinboard.responses.PostResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.add_post_fragment.*
@@ -86,7 +87,7 @@ class AddPostFragment : Fragment() {
     }
 
 
-    private fun handleResponse(post: Post) {
+    private fun handleResponse(post: PostResponse) {
         if (post != null) {
 
             val newPost = post

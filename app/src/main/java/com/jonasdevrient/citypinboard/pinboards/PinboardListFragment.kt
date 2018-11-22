@@ -43,7 +43,6 @@ class PinboardListFragment : Fragment() {
 
         loadPinboards()
 
-
         return view
     }
 
@@ -115,8 +114,6 @@ class PinboardListFragment : Fragment() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
-
-
     }
 
     private fun handleError(error: Throwable) {

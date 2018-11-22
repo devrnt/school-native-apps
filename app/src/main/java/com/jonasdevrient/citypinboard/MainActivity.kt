@@ -7,11 +7,9 @@ import com.jonasdevrient.citypinboard.authentication.LoginFragment
 
 class MainActivity : AppCompatActivity(), NavigationHost {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         if (savedInstanceState == null) {
             supportFragmentManager

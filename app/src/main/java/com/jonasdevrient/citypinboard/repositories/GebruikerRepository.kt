@@ -2,7 +2,9 @@ package com.jonasdevrient.citypinboard.repositories
 
 import com.jonasdevrient.citypinboard.models.Gebruiker
 import com.jonasdevrient.citypinboard.repositories.GebruikerAPI.repository
+import com.jonasdevrient.citypinboard.responses.ActionPostResponse
 import com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse
+import com.jonasdevrient.citypinboard.responses.PostResponse
 import com.jonasdevrient.citypinboard.responses.RegistreerResponse
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -35,6 +37,27 @@ interface GebruikerRepository {
      */
     @POST("users/checkusername")
     fun checkGebruikersnaam(@Body gebruikersnaamResponse: CheckGebruikersnaamResponse): Observable<CheckGebruikersnaamResponse>
+
+    /**
+     *  Gets the liked posts of the given user
+     *  @return an @see Observable of type @see List of type @see PostResponse with the liked posts
+     */
+    @POST("users/likedPosts")
+    fun getLikedPosts(@Body checkGeruikersnaamResponse: CheckGebruikersnaamResponse): Observable<List<PostResponse>>
+
+    /**
+     *  Likes a post for the given user
+     *  @return an @see Observable of type @see List of type @see PostResponse with the updated liked posts
+     */
+    @POST("users/likePost")
+    fun likePost(@Body actionPostResponse: ActionPostResponse): Observable<List<PostResponse>>
+
+    /**
+     *  Unlikes a post for the given user
+     *  @return an @see Observable of type @see List of type @see PostResponse with the updated liked posts
+     */
+    @POST("users/unLikePost")
+    fun unLikePost(@Body actionPostResponse: ActionPostResponse): Observable<List<PostResponse>>
 
 }
 

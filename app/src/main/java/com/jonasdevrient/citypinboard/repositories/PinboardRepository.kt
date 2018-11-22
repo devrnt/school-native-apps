@@ -4,6 +4,7 @@ import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.models.Post
 import com.jonasdevrient.citypinboard.repositories.GebruikerAPI.repository
 import com.jonasdevrient.citypinboard.repositories.PinboardAPI.repository
+import com.jonasdevrient.citypinboard.responses.PostResponse
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -25,7 +26,7 @@ interface PinboardRepository {
     fun getAll(): Observable<List<Pinboard>>
 
     @POST("pinboard/{id}/posts")
-    fun addPostToPinboard(@Path("id") pinboardId: String, @Body post: Post): Observable<Post>
+    fun addPostToPinboard(@Path("id") pinboardId: String, @Body post: Post): Observable<PostResponse>
 }
 
 /**

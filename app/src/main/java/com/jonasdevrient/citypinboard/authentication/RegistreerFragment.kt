@@ -9,13 +9,16 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import com.jonasdevrient.citypinboard.NavigationHost
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Gebruiker
 import com.jonasdevrient.citypinboard.pinboards.PinboardListFragment
 import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse
+import com.jonasdevrient.citypinboard.responses.PostResponse
 import com.jonasdevrient.citypinboard.responses.RegistreerResponse
+import get
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.registreer_fragment.*
@@ -132,6 +135,7 @@ class RegistreerFragment : Fragment() {
         sharedPreferences.put(getString(R.string.sp_token_key), token)
         sharedPreferences.put(getString(R.string.sp_token_username), gebruiker.username)
 
+        fetchLikedPosts()
 
         (activity as NavigationHost).navigateTo(PinboardListFragment(), false) // navigate to next fragment
 
@@ -139,5 +143,20 @@ class RegistreerFragment : Fragment() {
 
     private fun handleError(error: Throwable) {
         print(error)
+    }
+
+
+    private fun fetchLikedPosts() {
+        val username = sharedPreferences.get(getString(R.string.sp_token_username), "unknownUser")
+        val call = GebruikerAPI.repository.getLikedPosts(CheckGebruikersnaamResponse(username))
+        call.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleLikedPostsResponse, this::handleError)
+    }
+
+    private fun handleLikedPostsResponse(likedPosts: List<PostResponse>) {
+        val gson = Gson()
+        val jsonLikedPosts = gson.toJson(likedPosts)
+        sharedPreferences.put(getString(R.string.sp_token_likedPosts), jsonLikedPosts)
     }
 }
