@@ -54,32 +54,35 @@ class PinboardListFragment : Fragment() {
             val editText = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
             editText.hint = getString(R.string.hint_search)
 
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return true
-                }
+            if (this::displayPinboards.isInitialized) {
 
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    if (newText!!.isNotEmpty()) {
-                        displayPinboards.clear()
-
-                        val search = newText.toLowerCase()
-
-                        pinboards.forEach {
-                            if (it.city.toLowerCase().contains(search)) {
-                                displayPinboards.add(it)
-                            }
-                        }
-                        viewAdapter.notifyDataSetChanged()
-                    } else {
-                        displayPinboards.clear()
-                        displayPinboards.addAll(pinboards)
-                        viewAdapter.notifyDataSetChanged()
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        return true
                     }
-                    return true
-                }
 
-            })
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        if (newText!!.isNotEmpty()) {
+                            displayPinboards.clear()
+
+                            val search = newText.toLowerCase()
+
+                            pinboards.forEach {
+                                if (it.city.toLowerCase().contains(search)) {
+                                    displayPinboards.add(it)
+                                }
+                            }
+                            viewAdapter.notifyDataSetChanged()
+                        } else {
+                            displayPinboards.clear()
+                            displayPinboards.addAll(pinboards)
+                            viewAdapter.notifyDataSetChanged()
+                        }
+                        return true
+                    }
+
+                })
+            }
         }
 
         super.onCreateOptionsMenu(menu, inflater)
