@@ -38,4 +38,6 @@
     <string name="error_post_field_empty">Veld mag niet leeg zijn</string>
     <string name="hint_post_title">Post titel</string>
     <string name="hint_post_body">Post tekst hier &#8230;</string>
+
+    <string name="registration_background_description">Achtergrond registratie pagina</string>
 </resources>
