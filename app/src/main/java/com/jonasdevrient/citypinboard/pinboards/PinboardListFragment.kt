@@ -26,6 +26,8 @@ class PinboardListFragment : Fragment() {
     lateinit var displayPinboards: MutableList<Pinboard>
     private lateinit var spinner: ProgressBar
 
+    private lateinit var searchItem: MenuItem
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,41 +57,39 @@ class PinboardListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
-        val searchItem = menu.findItem(R.id.search_menu)
+        searchItem = menu.findItem(R.id.search_menu)
         if (searchItem != null) {
+            searchItem.isEnabled = false
             val searchView = searchItem.actionView as SearchView
             val editText = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
             editText.hint = getString(R.string.hint_search)
 
-            if (this::displayPinboards.isInitialized) {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
 
-                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(query: String?): Boolean {
-                        return true
-                    }
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText!!.isNotEmpty()) {
+                        displayPinboards.clear()
 
-                    override fun onQueryTextChange(newText: String?): Boolean {
-                        if (newText!!.isNotEmpty()) {
-                            displayPinboards.clear()
+                        val search = newText.toLowerCase()
 
-                            val search = newText.toLowerCase()
-
-                            pinboards.forEach {
-                                if (it.city.toLowerCase().contains(search)) {
-                                    displayPinboards.add(it)
-                                }
+                        pinboards.forEach {
+                            if (it.city.toLowerCase().contains(search)) {
+                                displayPinboards.add(it)
                             }
-                            viewAdapter.notifyDataSetChanged()
-                        } else {
-                            displayPinboards.clear()
-                            displayPinboards.addAll(pinboards)
-                            viewAdapter.notifyDataSetChanged()
                         }
-                        return true
+                        viewAdapter.notifyDataSetChanged()
+                    } else {
+                        displayPinboards.clear()
+                        displayPinboards.addAll(pinboards)
+                        viewAdapter.notifyDataSetChanged()
                     }
+                    return true
+                }
 
-                })
-            }
+            })
         }
 
         super.onCreateOptionsMenu(menu, inflater)
@@ -113,6 +113,8 @@ class PinboardListFragment : Fragment() {
 
         this.pinboards = pinboards
         displayPinboards = pinboards.toMutableList()
+        
+        searchItem.isEnabled = true
 
         spinner.visibility = View.GONE
 
