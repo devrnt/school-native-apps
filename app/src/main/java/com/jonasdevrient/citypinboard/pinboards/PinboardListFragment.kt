@@ -32,6 +32,7 @@ class PinboardListFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment with the CityList theme
         val view = inflater.inflate(R.layout.pinboard_list_fragment, container, false)
@@ -44,6 +45,12 @@ class PinboardListFragment : Fragment() {
         loadPinboards()
 
         return view
+    }
+
+    // needed when user returns to the page
+    override fun onResume() {
+        super.onResume()
+        loadPinboards()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

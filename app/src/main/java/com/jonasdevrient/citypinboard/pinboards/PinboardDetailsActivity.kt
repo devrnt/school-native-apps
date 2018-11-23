@@ -1,14 +1,18 @@
 package com.jonasdevrient.citypinboard.pinboards
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.MenuItem
 import com.google.gson.Gson
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.adapters.PostsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.pinboards.posts.AddPostFragment
+
 
 class PinboardDetailsActivity : AppCompatActivity() {
 
@@ -44,4 +48,16 @@ class PinboardDetailsActivity : AppCompatActivity() {
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                val parentIntent = NavUtils.getParentActivityIntent(this)
+                parentIntent!!.flags = Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                startActivity(parentIntent)
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
