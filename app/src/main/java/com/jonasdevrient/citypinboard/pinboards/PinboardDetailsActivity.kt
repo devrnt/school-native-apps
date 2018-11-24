@@ -12,6 +12,7 @@ import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.adapters.PostsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.pinboards.posts.AddPostFragment
+import kotlinx.android.synthetic.main.activity_pinboard_details.*
 
 
 class PinboardDetailsActivity : AppCompatActivity() {
@@ -41,10 +42,13 @@ class PinboardDetailsActivity : AppCompatActivity() {
             adapter = viewAdapter
         }
 
-        supportFragmentManager
-                .beginTransaction()
-                .add(R.id.container_add_post, AddPostFragment())
-                .commit()
+
+        // show b
+        floatingActionButton.setOnClickListener {
+            val bottomSheet = AddPostFragment()
+            bottomSheet.show(supportFragmentManager, "bottomSheet")
+        }
+
 
     }
 

@@ -3,7 +3,7 @@ package com.jonasdevrient.citypinboard.pinboards.posts
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v4.app.Fragment
+import android.support.design.widget.BottomSheetDialogFragment
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.add_post_fragment.view.*
 import kotlinx.android.synthetic.main.login_fragment.*
 import retrofit2.HttpException
 
-class AddPostFragment : Fragment() {
+class AddPostFragment : BottomSheetDialogFragment() {
     private lateinit var pinboard: Pinboard
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -88,19 +88,18 @@ class AddPostFragment : Fragment() {
 
 
     private fun handleResponse(post: PostResponse) {
-        if (post != null) {
+        val newPost = post
+        pinboard.posts.add(newPost)
+        (activity as PinboardDetailsActivity).viewAdapter.notifyDataSetChanged()
 
-            val newPost = post
-            pinboard.posts.add(newPost)
-            (activity as PinboardDetailsActivity).viewAdapter.notifyDataSetChanged()
+        Toast.makeText(context, "Succesvol gepost", Toast.LENGTH_LONG).show()
 
-            Toast.makeText(context, "Succesvol gepost", Toast.LENGTH_LONG).show()
+        // reset add post form
+        post_title_edit_text.text = null
+        post_body_edit_text.text = null
 
-            // reset add post form
-            post_title_edit_text.text = null
-            post_body_edit_text.text = null
-
-        }
+        // close the bottomsheet
+        this.dismiss()
 
     }
 
