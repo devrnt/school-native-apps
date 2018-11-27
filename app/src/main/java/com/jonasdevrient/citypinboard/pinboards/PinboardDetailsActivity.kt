@@ -32,7 +32,7 @@ class PinboardDetailsActivity : AppCompatActivity() {
         pinboard = gson.fromJson(jsonPinboard, Pinboard::class.java)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = PostsAdapter(this, pinboard.posts)
+        viewAdapter = PostsAdapter(this, pinboard.posts!!)
 
         recyclerView = findViewById<RecyclerView>(R.id.recycler_view_posts).apply {
             setHasFixedSize(true)

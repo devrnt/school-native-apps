@@ -89,7 +89,7 @@ class AddPostFragment : BottomSheetDialogFragment() {
 
     private fun handleResponse(post: PostResponse) {
         val newPost = post
-        pinboard.posts.add(newPost)
+        pinboard.posts!!.add(newPost)
         (activity as PinboardDetailsActivity).viewAdapter.notifyDataSetChanged()
 
         Toast.makeText(context, "Succesvol gepost", Toast.LENGTH_LONG).show()
