@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
 
     // used to persist in the sharedPref
     private lateinit var username: String
-
+    private lateinit var password: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -56,6 +56,7 @@ class LoginFragment : Fragment() {
             if (username_text_input.error == null && password_text_input.error == null) {
 
                 username = username_edit_text.text.toString()
+                password = password_edit_text.text.toString()
 
                 val call = GebruikerAPI.repository.login(Gebruiker(username_edit_text.text.toString(), password_edit_text.text.toString()))
                 call.observeOn(AndroidSchedulers.mainThread())
@@ -102,6 +103,7 @@ class LoginFragment : Fragment() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         sharedPreferences.put(getString(R.string.sp_token_key), token)
         sharedPreferences.put(getString(R.string.sp_token_username), username)
+        sharedPreferences.put(getString(R.string.sp_token_password), password)
 
         // load the likedPosts
         fetchLikedPosts()
