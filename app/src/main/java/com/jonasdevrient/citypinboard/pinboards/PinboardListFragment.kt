@@ -1,6 +1,11 @@
 package com.jonasdevrient.citypinboard.pinboards
 
+import android.arch.persistence.room.Room
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -12,6 +17,8 @@ import android.widget.ProgressBar
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
+import com.jonasdevrient.citypinboard.persistence.ApplicationDatabase
+import com.jonasdevrient.citypinboard.repositories.MainRepository
 import com.jonasdevrient.citypinboard.repositories.PinboardAPI
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -99,8 +106,21 @@ class PinboardListFragment : Fragment() {
     }
 
     private fun loadPinboards() {
-        val call = PinboardAPI.repository
-                .getAll()
+        val appDatabase = Room.databaseBuilder(context!!,
+                ApplicationDatabase::class.java, "citypinboards-database").build()
+        val pinboardDao = appDatabase.pinboardDao()
+
+
+        val call = MainRepository(PinboardAPI.repository, pinboardDao).getAll()
+        val bool = isNetworkAvailable()
+        print(bool)
+        when (isNetworkAvailable()) {
+            true -> print("avail")
+            false -> {
+                val snackbar = Snackbar.make(view!!, "Loaded from the local pers", Snackbar.LENGTH_INDEFINITE)
+                snackbar.setAction("OPNIEUW", RefreshListener())
+            }
+        }
 
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -126,8 +146,21 @@ class PinboardListFragment : Fragment() {
         }
     }
 
+    private fun isNetworkAvailable(): Boolean {
+        val cm = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnected == true || activeNetwork != null
+    }
+
+
     private fun handleError(error: Throwable) {
         print(error)
     }
 
+    inner class RefreshListener : View.OnClickListener {
+        override fun onClick(view: View) {
+            loadPinboards()
+        }
+
+    }
 }
