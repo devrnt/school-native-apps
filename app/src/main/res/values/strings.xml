@@ -26,6 +26,7 @@
     <string name="sp_token_key">com.jonasdevrient.citypinboard.token</string>
     <string name="sp_token_username">com.jonasdevrient.citypinboard.username</string>
     <string name="sp_token_likedPosts">com.jonasdevrient.citypinboard.likedPosts</string>
+    <string name="sp_token_password">com.jonasdevrient.citypinboard.password</string>
 
     <string name="back_button">Terug</string>
 
@@ -40,4 +41,10 @@
     <string name="hint_post_body">Post tekst hier &#8230;</string>
 
     <string name="registration_background_description">Achtergrond registratie pagina</string>
+
+    <string name="no_internet_connection_description">Placeholder geen internet</string>
+
+    <string name="no_internet_connection">Geen internet connectie</string>
+
+    <string name="no_internet_connection_solution">Valideer jouw netwerk en probeer opnieuw</string>
 </resources>
