@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
@@ -16,16 +17,21 @@ import com.jonasdevrient.citypinboard.utils.ConnectivityReceiver
 
 class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.ConnectivityReceiverListener {
     private var snackbar: Snackbar? = null
+    lateinit var loginFragment: LoginFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         registerReceiver(ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
         setContentView(R.layout.activity_main)
 
+
+        loginFragment = LoginFragment()
+
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.container, LoginFragment())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .add(R.id.container, loginFragment)
                     .commit()
         }
     }
@@ -38,6 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.C
     override fun navigateTo(fragment: Fragment, addToBackstack: Boolean) {
         val transaction = supportFragmentManager
                 .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(R.id.container, fragment)
 
         if (addToBackstack) {

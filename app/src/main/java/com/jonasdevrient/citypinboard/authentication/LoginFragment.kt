@@ -40,13 +40,8 @@ class LoginFragment : Fragment() {
         val view = inflater.inflate(R.layout.login_fragment, container, false)
 
         view.registreer_button.setOnClickListener {
-            val fragmentManager = fragmentManager
-            val fragmentTransaction = fragmentManager!!.beginTransaction()
-            val registreerFragment = RegistreerFragment()
+            (activity as NavigationHost).navigateTo(RegistreerFragment(), false) // navigate to next fragment
 
-            fragmentTransaction.hide(this)
-            fragmentTransaction.add(R.id.container, registreerFragment)
-            fragmentTransaction.commit()
         }
 
         view.next_button.setOnClickListener {
