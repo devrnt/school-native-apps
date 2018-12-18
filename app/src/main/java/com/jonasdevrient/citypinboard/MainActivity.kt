@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity(), NavigationHost {
                 showSnackBar(isConnected)
             }
         })
-
     }
 
     private fun showSnackBar(isConnected: Boolean) {
@@ -87,10 +86,6 @@ class MainActivity : AppCompatActivity(), NavigationHost {
         } else {
             // online remove snackbar and start back to login screen
             snackbar?.dismiss()
-            supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.container, LoginFragment())
-                    .commit()
         }
 
     }
