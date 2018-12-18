@@ -16,14 +16,17 @@ import com.jonasdevrient.citypinboard.utils.ConnectivityReceiver
 
 
 class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.ConnectivityReceiverListener {
+    private lateinit var connectivityReceiver: ConnectivityReceiver
+
     private var snackbar: Snackbar? = null
     lateinit var loginFragment: LoginFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        registerReceiver(ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-        setContentView(R.layout.activity_main)
 
+        connectivityReceiver = ConnectivityReceiver()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        setContentView(R.layout.activity_main)
 
         loginFragment = LoginFragment()
 
@@ -63,6 +66,11 @@ class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.C
         showSnackBar(isConnected)
     }
 
+    override fun onDestroy() {
+        unregisterReceiver(connectivityReceiver)
+        super.onDestroy()
+    }
+
     private fun showSnackBar(isConnected: Boolean) {
         if (!isConnected) {
             for (fragment in supportFragmentManager.fragments) {
@@ -92,7 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.C
                     .commit()
         }
 
-
     }
+
 
 }

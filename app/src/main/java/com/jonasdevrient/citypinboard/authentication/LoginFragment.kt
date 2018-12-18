@@ -3,12 +3,14 @@ package com.jonasdevrient.citypinboard.authentication
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.design.widget.TextInputLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import com.google.gson.Gson
 import com.jonasdevrient.citypinboard.NavigationHost
@@ -35,18 +37,36 @@ class LoginFragment : Fragment() {
     private lateinit var username: String
     private lateinit var password: String
 
+    lateinit var usernameInput: EditText
+    lateinit var passwordInput: EditText
+
+    lateinit var usernameInputLayout: TextInputLayout
+    lateinit var passwordInputLayout: TextInputLayout
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.login_fragment, container, false)
 
+        usernameInput = view.username_edit_text
+        passwordInput = view.password_edit_text
+
+        usernameInputLayout = view.username_text_input
+        passwordInputLayout = view.password_text_input
+
         view.registreer_button.setOnClickListener {
             (activity as NavigationHost).navigateTo(RegistreerFragment(), false) // navigate to next fragment
-
         }
 
         view.next_button.setOnClickListener {
-            if (!isPasswordValid(password_edit_text.text)) password_text_input.error = getString(R.string.error_password) else password_text_input.error == null
-            if (!isUsernameValid(username_edit_text.text)) username_text_input.error = getString(R.string.error_username) else username_text_input.error = null
+            when {
+                !isUsernameValid(username_edit_text.text) -> usernameInputLayout.error = getString(R.string.error_username)
+                else -> username_text_input.error = null
+            }
+            when {
+                !isPasswordValid(password_edit_text.text) -> passwordInputLayout.error = getString(R.string.error_password)
+                else -> password_text_input.error == null
+            }
+
 
             if (username_text_input.error == null && password_text_input.error == null) {
 
