@@ -5,7 +5,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -112,15 +111,6 @@ class PinboardListFragment : Fragment() {
 
 
         val call = MainRepository(PinboardAPI.repository, pinboardDao).getAll()
-        val bool = isNetworkAvailable()
-        print(bool)
-        when (isNetworkAvailable()) {
-            true -> print("avail")
-            false -> {
-                val snackbar = Snackbar.make(view!!, "Loaded from the local pers", Snackbar.LENGTH_INDEFINITE)
-                snackbar.setAction("OPNIEUW", RefreshListener())
-            }
-        }
 
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

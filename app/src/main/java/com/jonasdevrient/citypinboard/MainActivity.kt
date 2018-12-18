@@ -1,7 +1,6 @@
 package com.jonasdevrient.citypinboard
 
-import android.content.IntentFilter
-import android.net.ConnectivityManager
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -12,11 +11,10 @@ import android.view.ViewGroup
 import com.jonasdevrient.citypinboard.authentication.GeenInternetFragment
 import com.jonasdevrient.citypinboard.authentication.LoginFragment
 import com.jonasdevrient.citypinboard.pinboards.PinboardListFragment
-import com.jonasdevrient.citypinboard.utils.ConnectivityReceiver
+import com.jonasdevrient.citypinboard.utils.ConnectionLiveData
 
 
-class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.ConnectivityReceiverListener {
-    private lateinit var connectivityReceiver: ConnectivityReceiver
+class MainActivity : AppCompatActivity(), NavigationHost {
 
     private var snackbar: Snackbar? = null
     lateinit var loginFragment: LoginFragment
@@ -24,8 +22,6 @@ class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.C
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        connectivityReceiver = ConnectivityReceiver()
-        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
         setContentView(R.layout.activity_main)
 
         loginFragment = LoginFragment()
@@ -37,8 +33,9 @@ class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.C
                     .add(R.id.container, loginFragment)
                     .commit()
         }
-    }
 
+        checkInternetConnection()
+    }
 
     /**
      * Trigger a navigation to the specified fragment, optionally adding a transaction to the back
@@ -57,42 +54,38 @@ class MainActivity : AppCompatActivity(), NavigationHost, ConnectivityReceiver.C
         transaction.commit()
     }
 
-    override fun onResume() {
-        super.onResume()
-        ConnectivityReceiver.connectivityReceiverListener = this
-    }
+    private fun checkInternetConnection() {
+        val connectionLiveData = ConnectionLiveData(applicationContext)
+        connectionLiveData.observe(this, Observer { isConnected ->
+            if (isConnected != null) {
+                showSnackBar(isConnected)
+            }
+        })
 
-    override fun onNetworkConnectionChanged(isConnected: Boolean) {
-        showSnackBar(isConnected)
-    }
-
-    override fun onDestroy() {
-        unregisterReceiver(connectivityReceiver)
-        super.onDestroy()
     }
 
     private fun showSnackBar(isConnected: Boolean) {
+        // no internet
         if (!isConnected) {
-            for (fragment in supportFragmentManager.fragments) {
-                supportFragmentManager.beginTransaction().remove(fragment).commit()
-            }
-
+            // user is still on login or register screen
             if (!supportFragmentManager.fragments[0]::class.isInstance(PinboardListFragment())) {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, GeenInternetFragment()).commit()
-
-                val viewGroup = (this
-                        .findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
-
-                val messageToUser = "Je bent offline"
-
-                snackbar = Snackbar.make(viewGroup, messageToUser, Snackbar.LENGTH_LONG) //Assume "rootLayout" as the root layout of every activity.
-                snackbar?.duration = Snackbar.LENGTH_INDEFINITE
-                snackbar?.show()
-
+                supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container, GeenInternetFragment())
+                        .commit()
             }
+
+            val viewGroup = (this
+                    .findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+
+            val messageToUser = getString(R.string.you_are_offline)
+
+            snackbar = Snackbar.make(viewGroup, messageToUser, Snackbar.LENGTH_LONG)
+            snackbar?.duration = Snackbar.LENGTH_INDEFINITE
+            snackbar?.show()
 
         } else {
+            // online remove snackbar and start back to login screen
             snackbar?.dismiss()
             supportFragmentManager
                     .beginTransaction()

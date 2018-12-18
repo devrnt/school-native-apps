@@ -46,6 +46,8 @@
 
     <string name="no_internet_connection">Geen internet connectie</string>
 
+    <string name="you_are_offline">Je bent offline</string>
+
     <string name="no_internet_connection_solution">Valideer jouw netwerk en probeer opnieuw</string>
 
     <string name="pinboard_card_amount_of_posts">%1d posts</string>
