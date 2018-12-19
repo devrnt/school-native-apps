@@ -15,9 +15,8 @@ import com.jonasdevrient.citypinboard.utils.ConnectionLiveData
 
 
 class MainActivity : AppCompatActivity(), NavigationHost {
-
-    private var snackbar: Snackbar? = null
     lateinit var loginFragment: LoginFragment
+    private var snackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,9 +85,9 @@ class MainActivity : AppCompatActivity(), NavigationHost {
         } else {
             // online remove snackbar and start back to login screen
             snackbar?.dismiss()
+            if (!supportFragmentManager.fragments[0]::class.isInstance(PinboardListFragment())) {
+                navigateTo(LoginFragment(), false)
+            }
         }
-
     }
-
-
 }
