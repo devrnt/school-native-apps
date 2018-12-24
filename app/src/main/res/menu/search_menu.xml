@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/account_menu"
-        android:icon="@drawable/ic_favorite_24dp"
-        android:title="Search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always|collapseActionView" />
+    <!-- Uncomment this to use the liked posts page        -->
+    <!--
+        <item
+            android:id="@+id/account_menu"
+            android:icon="@drawable/ic_favorite_24dp"
+            android:title="Search"
+            app:actionViewClass="android.support.v7.widget.SearchView"
+            app:showAsAction="always|collapseActionView" />
+            -->
     <item
         android:id="@+id/search_menu"
         android:icon="@drawable/ic_search_24dp"

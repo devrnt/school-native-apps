@@ -50,6 +50,7 @@ com.jonasdevrient.citypinboard.pinboards
 com.jonasdevrient.citypinboard.pinboards.posts
 com.jonasdevrient.citypinboard.repositories
 com.jonasdevrient.citypinboard.responses
+com.jonasdevrient.citypinboard.services
 com.jonasdevrient.citypinboard.utils
 com.squareup.picasso
 io.reactivex.android

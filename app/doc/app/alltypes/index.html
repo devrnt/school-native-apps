@@ -18,6 +18,7 @@
 <td>
 <a href="../com.jonasdevrient.citypinboard.responses/-action-post-response/index.html">com.jonasdevrient.citypinboard.responses.ActionPostResponse</a></td>
 <td>
+<p>Data class used to map to the according response from the backend</p>
 </td>
 </tr>
 <tr>
@@ -30,6 +31,7 @@
 <td>
 <a href="../com.jonasdevrient.citypinboard.persistence/-application-database/index.html">com.jonasdevrient.citypinboard.persistence.ApplicationDatabase</a></td>
 <td>
+<p>Abstract class used to create the Room database</p>
 </td>
 </tr>
 <tr>
@@ -60,31 +62,28 @@
 <td>
 <a href="../com.jonasdevrient.citypinboard.responses/-check-gebruikersnaam-response/index.html">com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse</a></td>
 <td>
+<p>Data class used to map to the according response from the backend</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.utils/-connection-live-data/index.html">com.jonasdevrient.citypinboard.utils.ConnectionLiveData</a></td>
 <td>
+<p>Used to check if there is an internet connection.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.utils/-date-util/index.html">com.jonasdevrient.citypinboard.utils.DateUtil</a></td>
 <td>
+<p>Static class used to format a date to our local used date format</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.models/-gebruiker/index.html">com.jonasdevrient.citypinboard.models.Gebruiker</a></td>
 <td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../com.jonasdevrient.citypinboard.repositories/-gebruiker-a-p-i/index.html">com.jonasdevrient.citypinboard.repositories.GebruikerAPI</a></td>
-<td>
-<p>Static class (see java) with a public attribute <a href="../com.jonasdevrient.citypinboard.repositories/-gebruiker-a-p-i/repository.html">repository</a></p>
+<p>Data class Gebruiker</p>
 </td>
 </tr>
 <tr>
@@ -92,6 +91,14 @@
 <a href="../com.jonasdevrient.citypinboard.repositories/-gebruiker-repository/index.html">com.jonasdevrient.citypinboard.repositories.GebruikerRepository</a></td>
 <td>
 <p>Retrofit interface with the necessary methods to call the endpoints of the backend</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../com.jonasdevrient.citypinboard.services/-gebruiker-service/index.html">com.jonasdevrient.citypinboard.services.GebruikerService</a></td>
+<td>
+<p>Static class with a public attribute <a href="../com.jonasdevrient.citypinboard.services/-gebruiker-service/repository.html">repository</a> to use the <a href="../com.jonasdevrient.citypinboard.services/-gebruiker-service/repository.html">repository</a>
+with the right configurations, adapters and configurations.</p>
 </td>
 </tr>
 <tr>
@@ -104,6 +111,7 @@
 <td>
 <a href="../com.jonasdevrient.citypinboard.models/-location/index.html">com.jonasdevrient.citypinboard.models.Location</a></td>
 <td>
+<p>Data class Location</p>
 </td>
 </tr>
 <tr>
@@ -120,8 +128,11 @@
 </tr>
 <tr>
 <td>
-<a href="../com.jonasdevrient.citypinboard.repositories/-main-repository/index.html">com.jonasdevrient.citypinboard.repositories.MainRepository</a></td>
+<a href="../com.jonasdevrient.citypinboard.services/-main-service/index.html">com.jonasdevrient.citypinboard.services.MainService</a></td>
 <td>
+<p>This service is used as an high abstraction layer to at the same time get the pinboards from api
+and get the pinboards from the local Room database.
+Requests made to the api are automatically stored in the local Room database.</p>
 </td>
 </tr>
 <tr>
@@ -136,19 +147,15 @@ navigation events.</p>
 <td>
 <a href="../com.jonasdevrient.citypinboard.models/-pinboard/index.html">com.jonasdevrient.citypinboard.models.Pinboard</a></td>
 <td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../com.jonasdevrient.citypinboard.repositories/-pinboard-a-p-i/index.html">com.jonasdevrient.citypinboard.repositories.PinboardAPI</a></td>
-<td>
-<p>Static class (see java) with a public attribute <a href="../com.jonasdevrient.citypinboard.repositories/-pinboard-a-p-i/repository.html">repository</a></p>
+<p>Data class Pinboard</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.persistence/-pinboard-dao/index.html">com.jonasdevrient.citypinboard.persistence.PinboardDao</a></td>
 <td>
+<p>Interface with the Room methods with the according queries to get the data
+from the Room database</p>
 </td>
 </tr>
 <tr>
@@ -184,26 +191,38 @@ navigation events.</p>
 </tr>
 <tr>
 <td>
+<a href="../com.jonasdevrient.citypinboard.services/-pinboard-service/index.html">com.jonasdevrient.citypinboard.services.PinboardService</a></td>
+<td>
+<p>Static class with a public attribute <a href="../com.jonasdevrient.citypinboard.services/-pinboard-service/repository.html">repository</a> to use the <a href="../com.jonasdevrient.citypinboard.services/-pinboard-service/repository.html">repository</a>
+with the right configurations, adapters and configurations.</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../com.jonasdevrient.citypinboard.adapters/-pinboards-adapter/index.html">com.jonasdevrient.citypinboard.adapters.PinboardsAdapter</a></td>
 <td>
+<p>Recycleview adapter used to the display the <a href="../com.jonasdevrient.citypinboard.adapters/-pinboards-adapter/pinboards.html">pinboards</a></p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.models/-post/index.html">com.jonasdevrient.citypinboard.models.Post</a></td>
 <td>
+<p>Data class Post</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.responses/-post-response/index.html">com.jonasdevrient.citypinboard.responses.PostResponse</a></td>
 <td>
+<p>Data class used to map to the according response from the backend</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.adapters/-posts-adapter/index.html">com.jonasdevrient.citypinboard.adapters.PostsAdapter</a></td>
 <td>
+<p>Recycleview adapter used to the display the <a href="#">posts</a></p>
 </td>
 </tr>
 <tr>
@@ -720,12 +739,14 @@ navigation events.</p>
 <td>
 <a href="../com.jonasdevrient.citypinboard.responses/-registreer-response/index.html">com.jonasdevrient.citypinboard.responses.RegistreerResponse</a></td>
 <td>
+<p>Data class used to map to the according response from the backend</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../com.jonasdevrient.citypinboard.models/-stad-foto/index.html">com.jonasdevrient.citypinboard.models.StadFoto</a></td>
 <td>
+<p>Static converter class to get the according image</p>
 </td>
 </tr>
 </tbody>

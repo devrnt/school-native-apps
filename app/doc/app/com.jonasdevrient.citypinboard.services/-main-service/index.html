@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MainService - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.jonasdevrient.citypinboard.services</a>&nbsp;/&nbsp;<a href="./index.html">MainService</a><br/>
+<br/>
+<h1>MainService</h1>
+<code><span class="keyword">class </span><span class="identifier">MainService</span></code>
+<p>This service is used as an high abstraction layer to at the same time get the pinboards from api
+and get the pinboards from the local Room database.
+Requests made to the api are automatically stored in the local Room database.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">MainService</span><span class="symbol">(</span><span class="identifier" id="com.jonasdevrient.citypinboard.services.MainService$<init>(com.jonasdevrient.citypinboard.persistence.PinboardDao)/pinboardDao">pinboardDao</span><span class="symbol">:</span>&nbsp;<a href="../../com.jonasdevrient.citypinboard.persistence/-pinboard-dao/index.html"><span class="identifier">PinboardDao</span></a><span class="symbol">)</span></code>
+<p>Creates a mainService</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="pinboard-dao.html">pinboardDao</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">pinboardDao</span><span class="symbol">: </span><a href="../../com.jonasdevrient.citypinboard.persistence/-pinboard-dao/index.html"><span class="identifier">PinboardDao</span></a></code>
+<p>used to get and store the fetched pinboards in the Room database.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-all.html">getAll</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.jonasdevrient.citypinboard.models/-pinboard/index.html"><span class="identifier">Pinboard</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Gets all pinboards</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
