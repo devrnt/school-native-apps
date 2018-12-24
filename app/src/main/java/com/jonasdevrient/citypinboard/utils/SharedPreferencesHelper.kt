@@ -1,8 +1,9 @@
 import android.content.SharedPreferences
 
 /**
- * Kotlin extension class for SharedPreferences
- * to easily get and put a value in SharedPreferences
+ * Gets the value in the shared preferences with the [key]
+ * if nothing is found for the [key] return the [defaultValue]
+ * @return the found value for the [key]
  */
 inline fun <reified T> SharedPreferences.get(key: String, defaultValue: T): T {
     when (T::class) {
@@ -21,6 +22,9 @@ inline fun <reified T> SharedPreferences.get(key: String, defaultValue: T): T {
     return defaultValue
 }
 
+/**
+ * Saves the [value] in the sharedPreferences with the [key]
+ */
 inline fun <reified T> SharedPreferences.put(key: String, value: T) {
     val editor = this.edit()
 

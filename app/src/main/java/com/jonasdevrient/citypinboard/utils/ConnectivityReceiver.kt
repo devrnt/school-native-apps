@@ -13,6 +13,9 @@ import android.net.NetworkInfo
 import android.net.NetworkRequest
 import android.os.Build
 
+/**
+ * Used to check if there is an internet connection.
+ */
 class ConnectionLiveData(val context: Context) : LiveData<Boolean>() {
 
     private var connectivityManager: ConnectivityManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager

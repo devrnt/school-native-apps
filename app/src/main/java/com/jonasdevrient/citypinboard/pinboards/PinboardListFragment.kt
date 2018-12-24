@@ -20,7 +20,6 @@ import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.persistence.ApplicationDatabase
 import com.jonasdevrient.citypinboard.services.MainService
-import com.jonasdevrient.citypinboard.repositories.PinboardAPI
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.pinboard_list_fragment.view.*

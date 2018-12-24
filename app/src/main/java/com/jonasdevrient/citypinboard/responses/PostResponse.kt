@@ -2,6 +2,9 @@ package com.jonasdevrient.citypinboard.responses
 
 import java.util.*
 
+/**
+ * Data class used to map to the according response from the backend
+ */
 data class PostResponse(
         val _id: String,
         val title: String,

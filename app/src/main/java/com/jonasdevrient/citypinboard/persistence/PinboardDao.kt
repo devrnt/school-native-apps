@@ -7,6 +7,10 @@ import android.arch.persistence.room.Query
 import com.jonasdevrient.citypinboard.models.Pinboard
 import io.reactivex.Single
 
+/**
+ * Interface with the Room methods with the according queries to get the data
+ * from the Room database
+ */
 @Dao
 interface PinboardDao {
 
