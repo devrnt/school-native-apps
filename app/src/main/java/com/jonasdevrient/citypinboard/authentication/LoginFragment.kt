@@ -43,6 +43,11 @@ class LoginFragment : Fragment() {
     lateinit var usernameInputLayout: TextInputLayout
     lateinit var passwordInputLayout: TextInputLayout
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.login_fragment, container, false)
@@ -52,6 +57,8 @@ class LoginFragment : Fragment() {
 
         usernameInputLayout = view.username_text_input
         passwordInputLayout = view.password_text_input
+
+        readSharedPreferences()
 
         view.registreer_button.setOnClickListener {
             (activity as NavigationHost).navigateTo(RegistreerFragment(), false) // navigate to next fragment
@@ -99,6 +106,20 @@ class LoginFragment : Fragment() {
         return view
     }
 
+    /**
+     * Reads the username and password from the shared preferences from the previous
+     * logged in user
+     */
+    private fun readSharedPreferences() {
+        val gebruikersnaam = sharedPreferences.getString(getString(R.string.sp_token_username), "")
+        val wachtwoord = sharedPreferences.getString(getString(R.string.sp_token_password), "")
+
+        // set the input with the username and password that was red from the sharedPreferences
+        usernameInput.setText(gebruikersnaam)
+        passwordInput.setText(wachtwoord)
+    }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).supportActionBar!!.hide()
@@ -123,11 +144,11 @@ class LoginFragment : Fragment() {
 
         // load the likedPosts
         fetchLikedPosts()
-
     }
 
     private fun handleError(error: Throwable) {
         // Get error as HTTPException to get the exception code
+        print(error)
         val httpError = error as HttpException
         when {
             httpError.code() == 401 -> password_text_input.error = getString(R.string.error_wrong_user_or_password)
@@ -148,8 +169,8 @@ class LoginFragment : Fragment() {
         val jsonLikedPosts = gson.toJson(likedPosts)
         sharedPreferences.put(getString(R.string.sp_token_likedPosts), jsonLikedPosts)
 
-        (activity as NavigationHost).navigateTo(PinboardListFragment(), false) // navigate to next fragment
-
+        // navigate to next fragment
+        (activity as NavigationHost).navigateTo(PinboardListFragment(), false)
     }
 
     private fun handleLikedPostsError(error: Throwable) {

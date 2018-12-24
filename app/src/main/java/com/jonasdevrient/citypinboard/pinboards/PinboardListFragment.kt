@@ -124,7 +124,7 @@ class PinboardListFragment : Fragment() {
 
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this::handleError).dispose()
+                .subscribe(this::handleResponse, this::handleError)
     }
 
     private fun handleResponse(pinboards: List<Pinboard>) {

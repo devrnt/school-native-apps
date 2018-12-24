@@ -142,8 +142,6 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
             call.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError)
-                    .dispose()
-
         }
 
         private fun unLikePost(username: String) {
@@ -152,7 +150,6 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
             call.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(this::handleResponseUnlike, this::handleError)
-                    .dispose()
         }
     }
 }

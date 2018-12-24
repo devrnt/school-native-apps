@@ -30,7 +30,6 @@ class AccountFragment : Fragment() {
         activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
         activity?.actionBar?.title = "Mijn likes"
 
-
         return view
     }
 
@@ -45,7 +44,6 @@ class AccountFragment : Fragment() {
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
-                .dispose()
     }
 
 
