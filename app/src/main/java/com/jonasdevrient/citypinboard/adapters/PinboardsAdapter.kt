@@ -14,6 +14,9 @@ import com.jonasdevrient.citypinboard.pinboards.PinboardDetailsActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.pinboard_item.view.*
 
+/**
+ * Recycleview adapter used to the display the [pinboards]
+ */
 class PinboardsAdapter(val context: Context?, val pinboards: List<Pinboard>) : RecyclerView.Adapter<PinboardsAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MyViewHolder {

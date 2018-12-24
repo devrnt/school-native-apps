@@ -2,6 +2,7 @@ package com.jonasdevrient.citypinboard.adapters
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.preference.PreferenceManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,9 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.gson.Gson
 import com.jonasdevrient.citypinboard.R
-import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.ActionPostResponse
 import com.jonasdevrient.citypinboard.responses.PostResponse
+import com.jonasdevrient.citypinboard.services.GebruikerService
 import com.jonasdevrient.citypinboard.utils.DateUtil
 import get
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,6 +22,9 @@ import kotlinx.android.synthetic.main.post_item.view.*
 import put
 import retrofit2.HttpException
 
+/**
+ * Recycleview adapter used to the display the [posts]
+ */
 class PostsAdapter(val context: Context, private val posts: MutableList<PostResponse>) :
         RecyclerView.Adapter<PostsAdapter.MyViewHolder>() {
 
@@ -61,7 +65,6 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
             }
         }
 
-
         fun setData(post: PostResponse, position: Int) {
             itemView.title_post.text = post.title
             itemView.author_name.text = post.creator
@@ -69,8 +72,12 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
             itemView.amount_of_likes.text = post.likes.toString()
             itemView.date_post.text = DateUtil.toSimpleString(post.dateCreated!!)
             when {
-                isAlreadyLiked(post) -> itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_24dp)
-                else -> itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_border_24dp)
+                isAlreadyLiked(post) -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_24dp)
+                }
+                else -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_border_24dp)
+                }
             }
             this.currentPost = post
             this.currentPosition = position
@@ -78,8 +85,11 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
 
         fun updateAmountOfLikes() {
             itemView.amount_of_likes.text = currentPost!!.likes.toString()
-            if (isAlreadyLiked(currentPost!!)) itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_24dp)
-            else itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_border_24dp)
+            if (isAlreadyLiked(currentPost!!)) if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_24dp)
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_border_24dp)
+            }
         }
 
         private fun handleResponse(postResponse: List<PostResponse>) {
@@ -97,7 +107,7 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
         }
 
         private fun handleResponseUnlike(postResponse: List<PostResponse>) {
-            var mutableLikedList = postResponse.toMutableList()
+            val mutableLikedList = postResponse.toMutableList()
             mutableLikedList.removeAll { p -> p._id == currentPost!!._id }
             print(mutableLikedList)
             val gson = Gson()
@@ -128,19 +138,21 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
 
         private fun likePost(username: String) {
             val actionPostResponse = ActionPostResponse(username, currentPost!!._id)
-            val call = GebruikerAPI.repository.likePost(actionPostResponse)
+            val call = GebruikerService.repository.likePost(actionPostResponse)
             call.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError)
+                    .dispose()
 
         }
 
         private fun unLikePost(username: String) {
             val actionPostResponse = ActionPostResponse(username, currentPost!!._id)
-            val call = GebruikerAPI.repository.unLikePost(actionPostResponse)
+            val call = GebruikerService.repository.unLikePost(actionPostResponse)
             call.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(this::handleResponseUnlike, this::handleError)
+                    .dispose()
         }
     }
 }

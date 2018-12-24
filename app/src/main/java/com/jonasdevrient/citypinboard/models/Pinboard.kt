@@ -6,6 +6,13 @@ import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 import com.jonasdevrient.citypinboard.responses.PostResponse
 
+/**
+ * Data class Pinboard
+ * @property _id id of the pinboard
+ * @property city city of the pinboard
+ * @property location location of the city
+ * @property posts the list of posts that accords to the pinboard
+ */
 @Entity(tableName = "pinboards")
 data class Pinboard(
         @PrimaryKey

@@ -10,9 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.adapters.PostsAdapter
-import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse
 import com.jonasdevrient.citypinboard.responses.PostResponse
+import com.jonasdevrient.citypinboard.services.GebruikerService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -40,11 +40,12 @@ class AccountFragment : Fragment() {
     }
 
     private fun getLikedPosts() {
-        val call = GebruikerAPI.repository.getLikedPosts(CheckGebruikersnaamResponse("jonas2"))
+        val call = GebruikerService.repository.getLikedPosts(CheckGebruikersnaamResponse("jonas2"))
 
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
+                .dispose()
     }
 
 

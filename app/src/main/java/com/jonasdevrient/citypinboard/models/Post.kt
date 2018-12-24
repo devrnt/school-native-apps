@@ -2,7 +2,10 @@ package com.jonasdevrient.citypinboard.models
 
 import java.util.*
 
-class Post(
+/**
+ * Data class Post
+ */
+data class Post(
         val title: String,
         val body: String,
         val dateCreated: Date? = null,
