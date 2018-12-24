@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>GebruikerRepository - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.jonasdevrient.citypinboard.repositories</a>&nbsp;/&nbsp;<a href="./index.html">GebruikerRepository</a><br/>
+<br/>
+<h1>GebruikerRepository</h1>
+<code><span class="keyword">interface </span><span class="identifier">GebruikerRepository</span></code>
+<p>Retrofit interface with the necessary methods to call the endpoints of the backend</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="check-gebruikersnaam.html">checkGebruikersnaam</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">checkGebruikersnaam</span><span class="symbol">(</span><span class="identifier" id="com.jonasdevrient.citypinboard.repositories.GebruikerRepository$checkGebruikersnaam(com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse)/gebruikersnaamResponse">gebruikersnaamResponse</span><span class="symbol">:</span>&nbsp;<a href="../../com.jonasdevrient.citypinboard.responses/-check-gebruikersnaam-response/index.html"><span class="identifier">CheckGebruikersnaamResponse</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.jonasdevrient.citypinboard.responses/-check-gebruikersnaam-response/index.html"><span class="identifier">CheckGebruikersnaamResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Checks if a username is already taken</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-liked-posts.html">getLikedPosts</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getLikedPosts</span><span class="symbol">(</span><span class="identifier" id="com.jonasdevrient.citypinboard.repositories.GebruikerRepository$getLikedPosts(com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse)/checkGeruikersnaamResponse">checkGeruikersnaamResponse</span><span class="symbol">:</span>&nbsp;<a href="../../com.jonasdevrient.citypinboard.responses/-check-gebruikersnaam-response/index.html"><span class="identifier">CheckGebruikersnaamResponse</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.jonasdevrient.citypinboard.responses/-post-response/index.html"><span class="identifier">PostResponse</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Gets the liked posts of the given user</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="like-post.html">likePost</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">likePost</span><span class="symbol">(</span><span class="identifier" id="com.jonasdevrient.citypinboard.repositories.GebruikerRepository$likePost(com.jonasdevrient.citypinboard.responses.ActionPostResponse)/actionPostResponse">actionPostResponse</span><span class="symbol">:</span>&nbsp;<a href="../../com.jonasdevrient.citypinboard.responses/-action-post-response/index.html"><span class="identifier">ActionPostResponse</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.jonasdevrient.citypinboard.responses/-post-response/index.html"><span class="identifier">PostResponse</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Likes a post for the given user</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="login.html">login</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">login</span><span class="symbol">(</span><span class="identifier" id="com.jonasdevrient.citypinboard.repositories.GebruikerRepository$login(com.jonasdevrient.citypinboard.models.Gebruiker)/gebruiker">gebruiker</span><span class="symbol">:</span>&nbsp;<a href="../../com.jonasdevrient.citypinboard.models/-gebruiker/index.html"><span class="identifier">Gebruiker</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.jonasdevrient.citypinboard.responses/-registreer-response/index.html"><span class="identifier">RegistreerResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Logs a <a href="login.html#com.jonasdevrient.citypinboard.repositories.GebruikerRepository$login(com.jonasdevrient.citypinboard.models.Gebruiker)/gebruiker">gebruiker</a> in</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="registreer.html">registreer</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registreer</span><span class="symbol">(</span><span class="identifier" id="com.jonasdevrient.citypinboard.repositories.GebruikerRepository$registreer(com.jonasdevrient.citypinboard.models.Gebruiker)/gebruiker">gebruiker</span><span class="symbol">:</span>&nbsp;<a href="../../com.jonasdevrient.citypinboard.models/-gebruiker/index.html"><span class="identifier">Gebruiker</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.jonasdevrient.citypinboard.responses/-registreer-response/index.html"><span class="identifier">RegistreerResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Logs a <a href="registreer.html#com.jonasdevrient.citypinboard.repositories.GebruikerRepository$registreer(com.jonasdevrient.citypinboard.models.Gebruiker)/gebruiker">gebruiker</a> in</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="un-like-post.html">unLikePost</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">unLikePost</span><span class="symbol">(</span><span class="identifier" id="com.jonasdevrient.citypinboard.repositories.GebruikerRepository$unLikePost(com.jonasdevrient.citypinboard.responses.ActionPostResponse)/actionPostResponse">actionPostResponse</span><span class="symbol">:</span>&nbsp;<a href="../../com.jonasdevrient.citypinboard.responses/-action-post-response/index.html"><span class="identifier">ActionPostResponse</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.jonasdevrient.citypinboard.responses/-post-response/index.html"><span class="identifier">PostResponse</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Unlikes a post for the given user</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
