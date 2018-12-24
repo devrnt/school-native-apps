@@ -13,7 +13,9 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import android.widget.EditText
 import android.widget.ProgressBar
+import com.jonasdevrient.citypinboard.NavigationHost
 import com.jonasdevrient.citypinboard.R
+import com.jonasdevrient.citypinboard.account.AccountFragment
 import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.persistence.ApplicationDatabase
@@ -33,6 +35,7 @@ class PinboardListFragment : Fragment() {
     private lateinit var spinner: ProgressBar
 
     private lateinit var searchItem: MenuItem
+    private lateinit var accountItem: MenuItem
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +68,9 @@ class PinboardListFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
         searchItem = menu.findItem(R.id.search_menu)
         searchItem.isEnabled = false
+        accountItem = menu.findItem(R.id.account_menu)
+        accountItem.setOnMenuItemClickListener { navigateToList() }
+
         val searchView = searchItem.actionView as SearchView
         val editText = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
         editText.hint = getString(R.string.hint_search)
@@ -97,6 +103,11 @@ class PinboardListFragment : Fragment() {
         })
 
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun navigateToList(): Boolean {
+        (activity as NavigationHost).navigateTo(AccountFragment(), true) // navigate to next fragment
+        return true
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -95,6 +95,7 @@ class LoginFragment : Fragment() {
             }
             false
         }
+        activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
         return view
     }
 
