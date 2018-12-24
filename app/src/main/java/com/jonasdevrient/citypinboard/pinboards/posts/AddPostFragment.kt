@@ -13,8 +13,8 @@ import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.models.Post
 import com.jonasdevrient.citypinboard.pinboards.PinboardDetailsActivity
-import com.jonasdevrient.citypinboard.repositories.PinboardAPI
 import com.jonasdevrient.citypinboard.responses.PostResponse
+import com.jonasdevrient.citypinboard.services.PinboardService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.add_post_fragment.*
@@ -50,7 +50,7 @@ class AddPostFragment : BottomSheetDialogFragment() {
                         sharedPreferences.getString(getString(R.string.sp_token_username), "unknownUser")
                 )
 
-                val call = PinboardAPI.repository.addPostToPinboard(pinboard._id, post)
+                val call = PinboardService.repository.addPostToPinboard(pinboard._id, post)
                 call.observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponse, this::handleError)

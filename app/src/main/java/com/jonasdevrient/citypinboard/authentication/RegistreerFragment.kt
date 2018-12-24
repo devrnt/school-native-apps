@@ -14,10 +14,10 @@ import com.jonasdevrient.citypinboard.NavigationHost
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Gebruiker
 import com.jonasdevrient.citypinboard.pinboards.PinboardListFragment
-import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse
 import com.jonasdevrient.citypinboard.responses.PostResponse
 import com.jonasdevrient.citypinboard.responses.RegistreerResponse
+import com.jonasdevrient.citypinboard.services.GebruikerService
 import get
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -78,13 +78,13 @@ class RegistreerFragment : Fragment() {
 
     private fun attemptRegistreer(gebruikersNaam: Editable, wachtwoord: Editable) {
         gebruiker = Gebruiker(gebruikersNaam.toString(), wachtwoord.toString())
-        val callGebruikersnaam = GebruikerAPI.repository.checkGebruikersnaam(CheckGebruikersnaamResponse(gebruiker.username))
+        val callGebruikersnaam = GebruikerService.repository.checkGebruikersnaam(CheckGebruikersnaamResponse(gebruiker.username))
 
         callGebruikersnaam.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleGebruikersnaamResponse, this::handleGebruikersnaamError)
 
-        /*val call = GebruikerAPI.repository.registreer(gebruiker)
+        /*val call = GebruikerService.repository.registreer(gebruiker)
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)*/
@@ -114,7 +114,7 @@ class RegistreerFragment : Fragment() {
     private fun handleGebruikersnaamResponse(gebruikersnaamResponse: CheckGebruikersnaamResponse) {
         when {
             gebruikersnaamResponse.username == "ok" -> {
-                val call = GebruikerAPI.repository.registreer(gebruiker)
+                val call = GebruikerService.repository.registreer(gebruiker)
                 call.observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponse, this::handleError)
@@ -148,7 +148,7 @@ class RegistreerFragment : Fragment() {
 
     private fun fetchLikedPosts() {
         val username = sharedPreferences.get(getString(R.string.sp_token_username), "unknownUser")
-        val call = GebruikerAPI.repository.getLikedPosts(CheckGebruikersnaamResponse(username))
+        val call = GebruikerService.repository.getLikedPosts(CheckGebruikersnaamResponse(username))
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleLikedPostsResponse, this::handleError)

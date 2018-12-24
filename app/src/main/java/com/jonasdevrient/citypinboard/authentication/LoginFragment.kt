@@ -17,10 +17,10 @@ import com.jonasdevrient.citypinboard.NavigationHost
 import com.jonasdevrient.citypinboard.R
 import com.jonasdevrient.citypinboard.models.Gebruiker
 import com.jonasdevrient.citypinboard.pinboards.PinboardListFragment
-import com.jonasdevrient.citypinboard.repositories.GebruikerAPI
 import com.jonasdevrient.citypinboard.responses.CheckGebruikersnaamResponse
 import com.jonasdevrient.citypinboard.responses.PostResponse
 import com.jonasdevrient.citypinboard.responses.RegistreerResponse
+import com.jonasdevrient.citypinboard.services.GebruikerService
 import get
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -73,7 +73,7 @@ class LoginFragment : Fragment() {
                 username = username_edit_text.text.toString()
                 password = password_edit_text.text.toString()
 
-                val call = GebruikerAPI.repository.login(Gebruiker(username_edit_text.text.toString(), password_edit_text.text.toString()))
+                val call = GebruikerService.repository.login(Gebruiker(username_edit_text.text.toString(), password_edit_text.text.toString()))
                 call.observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponse, this::handleError)
@@ -137,7 +137,7 @@ class LoginFragment : Fragment() {
 
     private fun fetchLikedPosts() {
         val username = sharedPreferences.get(getString(R.string.sp_token_username), "unknownUser")
-        val call = GebruikerAPI.repository.getLikedPosts(CheckGebruikersnaamResponse(username))
+        val call = GebruikerService.repository.getLikedPosts(CheckGebruikersnaamResponse(username))
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleLikedPostsResponse, this::handleLikedPostsError)

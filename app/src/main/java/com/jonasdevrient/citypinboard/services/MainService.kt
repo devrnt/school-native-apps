@@ -2,7 +2,6 @@ package com.jonasdevrient.citypinboard.services
 
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.persistence.PinboardDao
-import com.jonasdevrient.citypinboard.repositories.PinboardAPI
 import io.reactivex.Observable
 import io.reactivex.Observable.concatArray
 import io.reactivex.schedulers.Schedulers
@@ -41,7 +40,7 @@ class MainService(val pinboardDao: PinboardDao) {
      * @return an observable with the list of pinboards from the rest endpoint
      */
     private fun getPinboardsFromApi(): Observable<List<Pinboard>>? {
-        return PinboardAPI.repository.getAll().doOnNext {
+        return PinboardService.repository.getAll().doOnNext {
             storePinboardsInDatabase(it)
         }
     }

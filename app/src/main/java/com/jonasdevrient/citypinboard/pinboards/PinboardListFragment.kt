@@ -19,7 +19,7 @@ import com.jonasdevrient.citypinboard.account.AccountFragment
 import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
 import com.jonasdevrient.citypinboard.persistence.ApplicationDatabase
-import com.jonasdevrient.citypinboard.repositories.MainRepository
+import com.jonasdevrient.citypinboard.services.MainService
 import com.jonasdevrient.citypinboard.repositories.PinboardAPI
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -121,11 +121,11 @@ class PinboardListFragment : Fragment() {
         val pinboardDao = appDatabase.pinboardDao()
 
 
-        val call = MainRepository(PinboardAPI.repository, pinboardDao).getAll()
+        val call = MainService(pinboardDao).getAll()
 
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this::handleError)
+                .subscribe(this::handleResponse, this::handleError).dispose()
     }
 
     private fun handleResponse(pinboards: List<Pinboard>) {
