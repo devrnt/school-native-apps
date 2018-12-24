@@ -67,8 +67,8 @@ class PinboardListFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
         searchItem = menu.findItem(R.id.search_menu)
         searchItem.isEnabled = false
-        accountItem = menu.findItem(R.id.account_menu)
-        accountItem.setOnMenuItemClickListener { navigateToList() }
+        //accountItem = menu.findItem(R.id.account_menu)
+        //accountItem.setOnMenuItemClickListener { navigateToList() }
 
         val searchView = searchItem.actionView as SearchView
         val editText = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
