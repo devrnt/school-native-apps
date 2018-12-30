@@ -1,9 +1,6 @@
 package com.jonasdevrient.citypinboard.pinboards
 
-import android.arch.persistence.room.Room
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -13,19 +10,18 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import android.widget.EditText
 import android.widget.ProgressBar
-import com.jonasdevrient.citypinboard.NavigationHost
 import com.jonasdevrient.citypinboard.R
-import com.jonasdevrient.citypinboard.account.AccountFragment
 import com.jonasdevrient.citypinboard.adapters.PinboardsAdapter
 import com.jonasdevrient.citypinboard.models.Pinboard
-import com.jonasdevrient.citypinboard.persistence.ApplicationDatabase
-import com.jonasdevrient.citypinboard.services.MainService
+import com.jonasdevrient.citypinboard.viewmodels.PinboardViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.pinboard_list_fragment.view.*
 
 
 class PinboardListFragment : Fragment() {
+    private lateinit var pinboardViewModel: PinboardViewModel
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -40,6 +36,7 @@ class PinboardListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        pinboardViewModel = ViewModelProviders.of(this).get(PinboardViewModel::class.java)
     }
 
 
@@ -104,25 +101,14 @@ class PinboardListFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    private fun navigateToList(): Boolean {
-        (activity as NavigationHost).navigateTo(AccountFragment(), true) // navigate to next fragment
-        return true
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).supportActionBar!!.show()
     }
 
     private fun loadPinboards() {
-        val appDatabase = Room.databaseBuilder(context!!,
-                ApplicationDatabase::class.java, "citypinboards-database").build()
-        val pinboardDao = appDatabase.pinboardDao()
-
-
-        val call = MainService(pinboardDao).getAll()
-
-        call.observeOn(AndroidSchedulers.mainThread())
+        pinboardViewModel.getAllPinboards()
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
     }
@@ -146,21 +132,7 @@ class PinboardListFragment : Fragment() {
         }
     }
 
-    private fun isNetworkAvailable(): Boolean {
-        val cm = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
-        return activeNetwork?.isConnected == true || activeNetwork != null
-    }
-
-
     private fun handleError(error: Throwable) {
         print(error)
-    }
-
-    inner class RefreshListener : View.OnClickListener {
-        override fun onClick(view: View) {
-            loadPinboards()
-        }
-
     }
 }
