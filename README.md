@@ -17,37 +17,47 @@ School project for the subject 'Nativa Apps: Android'.
 
 # City Pinboard
 
-School project for the subject 'Nativa Apps: Android'.
+School project for the subject 'Native Apps: Android'.
+
+This Android application creates a possibilty to post something (small) on a 'virtual' pinboard for a corresponding city/village in Belgium. This project was created on 6 October 2018.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Clone the Repository
+As usual, you get started by
+ cloning the project to your local machine
+
+```
+git clone https://github.com/HoGentTIN/native-apps-1-android-creative-app-JonasDeVrient.git
+```
+
+
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install the software
 
-```
-Give examples
-```
+- Android Studio and an Android emulator
+
+The emulator is recommended to have API 26
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
 
 ```
-Give the example
+Open Android Studio 
 ```
-
-And repeat
-
+Open the project in Android studio by the following instructions
 ```
-until finished
+File -> Open -> [Select project in cloned repository] 
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
+Run the application on the emulator
+```
+Run -> Run  
+```
 
 ## Running the tests
 
