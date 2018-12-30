@@ -1,5 +1,6 @@
 package com.jonasdevrient.citypinboard.adapters
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
@@ -65,29 +66,29 @@ class PostsAdapter(val context: Context, private val posts: MutableList<PostResp
             }
         }
 
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         fun setData(post: PostResponse, position: Int) {
             itemView.title_post.text = post.title
             itemView.author_name.text = post.creator
             itemView.post_body.text = post.body
             itemView.amount_of_likes.text = post.likes.toString()
             itemView.date_post.text = DateUtil.toSimpleString(post.dateCreated!!)
-            when {
-                isAlreadyLiked(post) -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_24dp)
-                }
-                else -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_border_24dp)
-                }
+            if (isAlreadyLiked(post)) {
+                itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_24dp)
+            } else {
+                itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_border_24dp)
             }
             this.currentPost = post
             this.currentPosition = position
         }
 
-        fun updateAmountOfLikes() {
+
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+        private fun updateAmountOfLikes() {
             itemView.amount_of_likes.text = currentPost!!.likes.toString()
-            if (isAlreadyLiked(currentPost!!)) if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (isAlreadyLiked(currentPost!!)) {
                 itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_24dp)
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            } else {
                 itemView.like_action_button.icon = context.getDrawable(R.drawable.ic_favorite_border_24dp)
             }
         }

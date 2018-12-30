@@ -52,7 +52,7 @@ class PinboardsAdapter(val context: Context?, val pinboards: List<Pinboard>) : R
         fun setData(pinboard: Pinboard?, position: Int) {
             itemView.city_text.text = pinboard!!.city
             itemView.amount_of_posts.text = context!!.getString(R.string.pinboard_card_amount_of_posts, pinboard.posts!!.count())
-            Picasso.get().load(StadFoto.image(pinboard.city.toLowerCase().trim())).fit().centerCrop().placeholder(R.drawable.ic_favorite_24dp).error(R.drawable.ic_icon).into(itemView.city_image)
+            Picasso.get().load(StadFoto.image(pinboard.city.toLowerCase().trim())).fit().centerCrop().placeholder(R.drawable.ic_icon).error(R.drawable.ic_icon).into(itemView.city_image)
 
             this.currentPinboard = pinboard
             this.currentPosition = position
