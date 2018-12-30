@@ -22,8 +22,6 @@
 
     -->
 
-
-    Other theme
     <color name="colorPrimary">#344955</color>
     <color name="colorPrimaryDark">#232F34</color>
     <color name="colorPrimaryLight">#4A6572</color>
@@ -32,7 +30,5 @@
     <color name="loginPageBackgroundColor">#018786</color>
     <color name="cityListBackgroundColor">#f4f4f4</color>
     <color name="colorError">#B00020</color>
-    <color name="ic_launcher_background">#FFFFFF</color>
-    -->
 
 </resources>
