@@ -7,6 +7,7 @@ import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import androidx.test.rule.ActivityTestRule
 import com.jonasdevrient.citypinboard.authentication.LoginFragment
 import com.jonasdevrient.citypinboard.authentication.RegistreerFragment
 import org.junit.Assert

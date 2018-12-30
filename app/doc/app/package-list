@@ -52,5 +52,6 @@ com.jonasdevrient.citypinboard.repositories
 com.jonasdevrient.citypinboard.responses
 com.jonasdevrient.citypinboard.services
 com.jonasdevrient.citypinboard.utils
+com.jonasdevrient.citypinboard.viewmodels
 com.squareup.picasso
 io.reactivex.android
