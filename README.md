@@ -46,42 +46,24 @@ The emulator is recommended to have API 26
 
 A step by step series of examples that tell you how to get a development env running
 
+1. Navigate to the main folder of the cloned repository and execute ```wake_up_heroku_backend.bat``` file.
 
-```
-Open Android Studio 
-```
-Open the project in Android studio by the following instructions
+This file sends a request to the backend, this is needed because the backend is hosted on Heroku and there is a free-host plan but the server goes to sleep when there are no requests made to the backend.
+
+2. Open Android Studio 
+3. Open the project in Android studio by the following instructions
 ```
 File -> Open -> [Select project in cloned repository] 
 ```
-Run the application on the emulator
+4. Run the application on the emulator
 ```
 Run -> Run  
 ```
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+1. Open Android Studio
+2. Run the file ``` MainActivityTest ``` found in ``` app/java/com.jonasdevrient.citypinboard/ ```
 
 ## Built With
 
