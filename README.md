@@ -42,6 +42,7 @@ File -> Open -> [Select project in cloned repository]
 ```
 Run -> Run  
 ```
+5. Create a new account in the app or use the account with username ``` jonas ``` and password ``` jonasjonas``` 
 
 ## Running the tests
 
