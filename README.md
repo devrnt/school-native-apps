@@ -2,7 +2,7 @@
 
 School project for the subject 'Native Apps: Android'.
 
-This Android application creates a possibilty to post something (small) on a 'virtual' pinboard for a corresponding city/village in Belgium. This project was created on 6 October 2018.
+This Android application makes it possible to post a 'post-it' on a 'virtual' pinboard for a corresponding city/village in Belgium. This project was created on 6/10/2018.
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ A step by step series of examples that tell you how to get a development env run
 
 1. Navigate to the main folder of the cloned repository and execute ```wake_up_heroku_backend.bat``` file.
 
-This file sends a request to the backend, this is needed because the backend is hosted on Heroku and there is a free-host plan but the server goes to sleep when there are no requests made to the backend.
+This file sends a request to the backend, this is needed because the backend is hosted on Heroku and there is a free-host plan, but the server goes to sleep when there are no requests made.
 
 2. Open Android Studio 
 3. Open the project in Android studio by the following instructions
@@ -67,4 +67,4 @@ See also the list of [contributors](https://github.com/HoGentTIN/native-apps-1-a
 
 * Learnt a lot while developing this project
 * Inspiration by Material Design (2.0)
-* Thanks to our teacher [Jens Buysse](https://github.com/eothein) 
+* Thanks to my teacher [Jens Buysse](https://github.com/eothein) 
